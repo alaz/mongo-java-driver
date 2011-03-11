@@ -684,6 +684,8 @@ public class JavaClientTest extends TestCase {
         assertEquals( 5 , dbObj.get( "x" ));
         assertNull( c.findOne(new BasicDBObject( "_id" , 1 ) ));
 
+        // remove something that does not exist, should return null
+        assertNull( c.findAndRemove( new BasicDBObject("no_such_field", "value")) );
         // test exception throwing
         try {
             dbObj = c.findAndModify( null, null );
